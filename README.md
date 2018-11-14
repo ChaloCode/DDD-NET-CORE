@@ -11,3 +11,9 @@ dotnet build
 dotnet run --project 1-Presentation/api/api.csproj
 
 dotnet sln DDD.NET.CORE.sln add 1-Presentation/api/api.csproj 2-Application/2-Application.csproj 3-Domain/3-Domain.csproj 4-Infrastructure/4-Infrastructure.csproj
+
+Plugin Visual Code
+C# ms-vscode.csharp
+vscode-solution-explorer
+C# IDE Extensions for VSCode
+
