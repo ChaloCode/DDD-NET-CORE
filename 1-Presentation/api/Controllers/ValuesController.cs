@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Application.application.services.car;
+using Domain.Entities.car;
 
 namespace api.Controllers
 {
@@ -22,6 +23,11 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            Car carro=new Car();
+            carro.Name="test_name_2";
+            carro.Engine="test_engine_2";
+            carro.Model="test_model_2";
+            carService.Create(carro);
             var test = carService.Hola();
             return new string[] { "value1", "value2", test };
         }
