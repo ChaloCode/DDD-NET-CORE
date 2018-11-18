@@ -69,3 +69,29 @@
 ## Instalar NuGet 
 
   - dotnet add package Newtonsoft.Json (Capa: Presentation)
+
+## Api GraphQL 
+  - [Repositorio guía](https://github.com/thedull/GraphQLWorkshop/tree/0_1_Initial)
+  - dotnet new web (Capa: Presentation/api_graph_ql/server)
+  - dotnet sln DDD.NET.CORE.sln add 1-Presentation/api_graph_ql/server/server.csproj (Raíz del proyecto)
+  - Crear en la raiz del directorio nuget.config
+    ```
+    <configuration>
+        <packageSources>
+            <add key="graphql-dotnet" value="https://myget.org/F/graphql-dotnet/api/v3/index.json" />
+        </packageSources>
+    </configuration>
+    ```
+  - Capa: Presentation/api_graph_ql/server :
+    - dotnet add package GraphQL.Server.Transports.AspNetCore --version 2.0.0
+    - dotnet add package GraphQL.Server.Transports.WebSockets --version 2.0.0
+    - dotnet add package Microsoft.AspNetCore.StaticFiles --version 2.1.1
+  - Capa: Presentation/api_graph_ql/Issues
+    - dotnet new classlib
+  - dotnet sln DDD.NET.CORE.sln add .\1-Presentation\api_graph_ql\Issues\Issues.csproj (Raíz del proyecto)
+  - Capa: Presentation/api_graph_ql/Issues
+    - dotnet add package GraphQL --version 2.1.0
+    - dotnet add package System.Reactive --version 3.1.1
+  - cd server
+    - dotnet add reference ../Issues/Issues.csproj
+  
