@@ -10,9 +10,10 @@ namespace Infrastructure.repositories.car
     public class CarRepository : ICarRepository
     {
         private CarContext _carContext;
-        public CarRepository(CarContext carContext)
+        public CarRepository()
         {
-            _carContext = carContext ?? throw new ArgumentNullException(nameof(carContext));
+            _carContext = new CarContext();
+
         }
         public void Create(Car carEntitie)
         {

@@ -11,7 +11,24 @@ namespace Infrastructure
     public class CarContext : DbContext 
     {
         public CarContext (DbContextOptions<CarContext> options) : base (options) { }
-        
+
+        public CarContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // get the configuration from the app settings
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .Build();
+                // define the database to use
+                optionsBuilder.UseSqlServer(config.GetConnectionString("CarConnection"));
+            }
+
+        }
+
         public DbSet<Car> Cars { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -16,8 +16,20 @@ namespace server
     {
         public void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
         {
-            //services.AddSingleton(configuration);
-            // GraphQL
+            services.AddSingleton(configuration);
+               ////////////////////////////////////////// 
+              /////////////////DDD////////////////////// 
+             //////////////////////////////////////////
+            // Application
+            services.AddSingleton<Issues.Services.ICarService, Issues.Services.CarService>();
+            services.AddSingleton<DoaminService.ICarService, DoaminService.CarService>();
+            // Domain
+            services.AddSingleton<ApplicationService.ICarService, ApplicationService.CarService>();
+            // Infrastructure
+            services.AddSingleton<Domain.repositories.contracts.car.ICarRepository, Infrastructure.repositories.car.CarRepository>();
+              ////////////////////////////////////////// 
+             /////////////////GraphQL////////////////// 
+            //////////////////////////////////////////
             services.AddSingleton<IIssueService, IssueService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IssueType>();
@@ -29,16 +41,6 @@ namespace server
             services.AddSingleton<IDependencyResolver>(c => new FuncDependencyResolver(type => c.GetRequiredService(type)));
             services.AddGraphQLHttp();
             services.AddGraphQLWebSocket<IssuesSchema>();
-            // DDD
-            // Application
-            services.AddSingleton<Issues.Services.ICarService, Issues.Services.CarService>();
-            //services.AddScoped<DoaminService.ICarService, DoaminService.CarService>();
-            // Domain
-            //services.AddScoped<ApplicationService.ICarService, ApplicationService.CarService>();
-            // Infrastructure
-            //services.AddScoped<Domain.repositories.contracts.car.ICarRepository, Infrastructure.repositories.car.CarRepository>();
-            // Context Infrastructure
-            //services.AddDbContext<CarContext>(options => options.UseSqlServer(configuration.GetConnectionString("CarConnection")));
         }
     }
 }
