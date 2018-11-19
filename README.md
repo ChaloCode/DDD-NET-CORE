@@ -94,4 +94,12 @@
     - dotnet add package System.Reactive --version 3.1.1
   - cd server
     - dotnet add reference ../Issues/Issues.csproj
-  
+  - (1-Presentation\api_graph_ql\Issues) 
+    - dotnet add Issues.csproj reference  ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
+    - dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  - (1-Presentation\api_graph_ql\server)
+    - dotnet add package Microsoft.EntityFrameworkCore
+    - dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+    - dotnet add package Microsoft.Extensions.Configuration
+    - dotnet add package Microsoft.Extensions.Configuration.Json
+    - dotnet add server.csproj reference  ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj

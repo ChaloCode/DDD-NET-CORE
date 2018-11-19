@@ -5,7 +5,7 @@ namespace Issues.Schemas
 {
     public class IssuesQuery : ObjectGraphType<object>
     {
-        public IssuesQuery(IIssueService issues, IUserService users)
+        public IssuesQuery(IIssueService issues, IUserService users, ICarService car)
         {
             Name = "Query";
             Field<ListGraphType<IssueType>>(
@@ -14,6 +14,9 @@ namespace Issues.Schemas
             Field<ListGraphType<UserType>>(
                 "users",
                 resolve: context => users.GetUsersAsync());
+            Field<ListGraphType<CarType>>(
+                "carros",
+                resolve: context => car.GetCarsAsync());
             Field<UserType>(
                 "user",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> {Name = "id"}),
