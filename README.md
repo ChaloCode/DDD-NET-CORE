@@ -1,105 +1,189 @@
-> Ejemplo practico utilizando la arquitectura DDD (Domain Driven Design) con NET CORE 2.1 EntityFrameworkCore y Visual Code (editor de texto).
+> Ejemplo practico implementado con la arquitectura DDD (Domain Driven Design) usando NET CORE 2.1, Entity Framework Core, GraphQL y Visual Code (editor de texto).
 
-## Creando proyecto 
+## Requisitos
+- Este proyecto se probo sobre S.O Windows
+- [Instalar Visual Code](https://code.visualstudio.com/)
+- [Instalar Git](https://git-scm.com/downloads)
+- [Instalar NET CORE 2.1](https://docs.microsoft.com/es-es/dotnet/core/#download-net-core-21) 
 
- - dotnet new webapi   (Capa: Presentation)
- - dotnet new classlib  (Capa: Application, Domain, Domain.Entiites)
- - dotnet new sln  (Raíz del proyecto)   
+## Comandos útiles NET CORE 2.1
+[Documentación de apoyo](https://docs.microsoft.com/es-es/dotnet/core/tools/dotnet-new?tabs=netcore21) 
+- dotnet clean
+- dotnet build
+- dotnet run -p 1-Presentation/api/api.csproj
 
-## Agregando referencia (Raíz del proyecto)     
-   
-   - dotnet add 2-Application/2-Application.csproj reference
-   3-Domain/3-Domain.csproj
-   
-   - dotnet add 4-Infrastructure/4-Infrastructure.csproj reference
-   3-Domain/3-Domain.csproj
-   
-   - dotnet add 1-Presentation/api/api.csproj reference
-   2-Application/2-Application.csproj
+## Plugins útiles Visual Code  
 
-   - dotnet add 4-Infrastructure/4-Infrastructure.csproj reference 3.1-Domain.Entities/3.1-Domain.Entities.csproj
+- [C# ms-vscode.csharp](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+- [vscode-solution-explorer](https://marketplace.visualstudio.com/items?itemName=fernandoescolar.vscode-solution-explorer)
+- [C# IDE Extensions for VSCode](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)
+- [.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer)
+- [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)
+- [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=jasonroger.markdown-preview-enhanced-fork)
 
-   - dotnet add 1-Presentation/api/api.csproj reference
-   4-Infrastructure/4-Infrastructure.csproj
-   
-   - dotnet add 3-Domain/3-Domain.csproj reference 3.1-Domain.Entities/3.1-Domain.Entities.csproj
+# Paso I
+> Con este paso podrá realizar "Hola Mundo" sobre la arquitectura  DDD, [rama del proyecto HolaMundo](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/HolaMundo)
+
+## Creando proyecto DDD
+>Ejecute los siguientes comandos en un shell o cmd:
+1. Crea la carpeta raíz del proyecto
+**md DDD.NET.CORE**
+2.  Acceder al proyecto
+**cd DDD.NET.CORE** 
+3. Crear la estructura del proyecto:
+- *Capa: presentación*
+	- **md 1-Presentation**
+	-  **md api**
+	- **cd api**
+	- **dotnet new webapi**
+	- **cd .. cd ..** (Regresar a la carpeta raíz)	
+- *Capa Aplicación*				
+	- **md 2-Application**
+	- **cd 2-Application**
+	- **dotnet new classlib**
+	- **cd . .** (Regresar a la carpeta raíz)
+- *Capa Dominio*
+	- **md 3-Domain**
+	- **cd 3-Domain**
+	- **dotnet new classlib**
+	- **cd . .** (Regresar a la carpeta raíz)
+- *Capa Dominio entidad*
+	- **md 3.1-Domain.Entities**
+	- **cd 3.1-Domain.Entities**
+	- **dotnet new classlib**
+	- **cd . .** (Regresar a la carpeta raíz)
+4. Agregar la solución del proyecto
+	- **dotnet new sln**  
+
+## Agregando referencias 
+>Ejecute los siguientes comandos en un shell o cmd (Raíz del proyecto):
+
+- dotnet add 1-Presentation/api/api.csproj reference 2-Application/2-Application.csproj  3.1-Domain.Entities/3.1-Domain.Entities.csproj 4-Infrastructure/4-Infrastructure.csproj
+
+- dotnet add 2-Application/2-Application.csproj reference 3-Domain/3-Domain.csproj 3.1-Domain.Entities/3.1-Domain.Entities.csproj 
+
+- dotnet add 3-Domain/3-Domain.csproj reference 3.1-Domain.Entities/3.1-Domain.Entities.csproj
+
+- dotnet add 4-Infrastructure/4-Infrastructure.csproj reference 3-Domain/3-Domain.csproj 3.1-Domain.Entities/3.1-Domain.Entities.csproj
+
+## Agregando los proyectos a la solución del proyecto
+
+>Ejecute el siguiente comando en un shell o cmd (Raíz del proyecto):
   
-   - dotnet add 2-Application/2-Application.csproj reference 3.1-Domain.Entities/3.1-Domain.Entities.csproj
+    dotnet sln DDD.NET.CORE.sln add 1-Presentation/api/api.csproj 2-Application/2-Application.csproj 3-Domain/3-Domain.csproj 4-3.1-Domain.Entities/3.1-Domain.Entities.csproj Infrastructure/4-Infrastructure.csproj 
+ 
+# Paso II
+> Con este paso podrá conectarse a una base de datos usando Entity Framework Core, [rama del proyecto EntityFameworkCore](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/EntityFameworkCore)
 
-   - dotnet add 1-Presentation/api/api.csproj reference 3.1-Domain.Entities/3.1-Domain.Entities.csproj
-   
-## Agregando los proyectos a la solución del proyecto (Raíz del proyecto) 
+## Instalar Entity Famework 
 
-       dotnet sln DDD.NET.CORE.sln add 1-Presentation/api/api.csproj
-       2-Application/2-Application.csproj 3-Domain/3-Domain.csproj
-       4-Infrastructure/4-Infrastructure.csproj 3.1-Domain.Entities/3.1-Domain.Entities.csproj
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
+>[Documentación de apoyo](https://docs.microsoft.com/en-us/ef/core/get-started/install/)
 
- ## Comandos útiles NET CORE 2.1    
+ - *Capa: presentación* 
+	 - cd 1-Presentation/api/  
+	- dotnet add package Microsoft.EntityFrameworkCore
+	- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+	- dotnet add package Microsoft.Extensions.Configuration
+	- dotnet add package Microsoft.Extensions.Configuration.Json
+	- **cd .. cd ..** (Regresar a la carpeta raíz)
+ - *Capa: Infraestructura* 
+	 - cd Infrastructure 
+	- dotnet add package Microsoft.EntityFrameworkCore
+	- dotnet add package Microsoft.EntityFrameworkCore.Sqlite (opcional)
+	- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+	- dotnet add package Microsoft.EntityFrameworkCore.Design
+	- dotnet add package Microsoft.EntityFrameworkCore.Tools
+	- dotnet add package Microsoft.Extensions.Configuration
+	- dotnet add package Microsoft.Extensions.Configuration.Json
   
-  - dotnet clean
-  - dotnet build
-  - dotnet run --project 1-Presentation/api/api.csproj
-     
- ##   Plugins útiles Visual Code 
+## Ejecutar comandos, Entity Famework 
 
-  -  C# ms-vscode.csharp   
-  -  vscode-solution-explorer   
-  -  C# IDE Extensions for VSCode
-  -  .NET Core Test Explorer
-  -  Rainbow Brackets
-  -  Markdown Preview Enhanced
-  -  Beautify
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
 
- ## Instalar Entity Famework (Capa: Infrastructure, Presentation)
+- cd 1-Presentation/api/  
+- dotnet ef migrations add CarDBExample -p ../../4-Infrastructure/4-Infrastructure.csproj
+- dotnet ef database update
+ 
+## Instalar NuGet 
+>Ejecute los siguiente comando en un shell o cmd (raíz del proyecto)
 
-  - [Documentación de apoyo](https://docs.microsoft.com/en-us/ef/core/get-started/install/)
-  - dotnet add package Microsoft.EntityFrameworkCore
-  - dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-  - dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-  - dotnet add package Microsoft.EntityFrameworkCore.Design
-  - dotnet add package Microsoft.EntityFrameworkCore.Tools
-  - dotnet add package Microsoft.Extensions.Configuration
-  - dotnet add package Microsoft.Extensions.Configuration.Json
+- cd 1-Presentation/api/  
+- dotnet add package Newtonsoft.Json 
+  
+# Paso III
+> Con este paso podrá implementar [GraphQL](https://graphql.org/) en la capa de presentación. 
 
-## Ejecutar comandos, Entity Famework (Capa: Presentation)
+## Api GraphQL
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
+[Repositorio guía](https://github.com/thedull/GraphQLWorkshop/tree/0_1_Initial)
 
-  - dotnet ef migrations add CarDBExample -p ../../4-Infrastructure/4-Infrastructure.csproj 
-  - dotnet ef database update
+**Crear servidor GraphQL**
+- cd 1-Presentation
+- md api_graph_ql
+- cd api_graph_ql
+- md server
+- cd server
+- dotnet new web
+- cd .. cd .. cd .. (Regresar a la carpeta raíz)
+- dotnet sln DDD.NET.CORE.sln add 1-Presentation/api_graph_ql/server/server.csproj 
+- Crear en la raiz del directorio nuget.config
+```
+
+<configuration>
+
+<packageSources>
+
+<add key="graphql-dotnet" value="https://myget.org/F/graphql-dotnet/api/v3/index.json" />
+
+</packageSources>
+
+</configuration>
+
+```
+**Crear cliente GraphQL**
+- cd 1-Presentation/api_graph_ql
+- md Issues
+- cd Issues
+- dotnet new classlib
+- cd .. cd .. cd .. (Regresar a la carpeta raíz)
+- dotnet sln DDD.NET.CORE.sln add .\1-Presentation\api_graph_ql\Issues\Issues.csproj 
 
 ## Instalar NuGet 
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
 
-  - dotnet add package Newtonsoft.Json (Capa: Presentation)
+**Servidor GraphQL**
+- cd 1-Presentation\api_graph_ql\server\
 
-## Api GraphQL 
-  - [Repositorio guía](https://github.com/thedull/GraphQLWorkshop/tree/0_1_Initial)
-  - dotnet new web (Capa: Presentation/api_graph_ql/server)
-  - dotnet sln DDD.NET.CORE.sln add 1-Presentation/api_graph_ql/server/server.csproj (Raíz del proyecto)
-  - Crear en la raiz del directorio nuget.config
-    ```
-    <configuration>
-        <packageSources>
-            <add key="graphql-dotnet" value="https://myget.org/F/graphql-dotnet/api/v3/index.json" />
-        </packageSources>
-    </configuration>
-    ```
-  - Capa: Presentation/api_graph_ql/server :
-    - dotnet add package GraphQL.Server.Transports.AspNetCore --version 2.0.0
-    - dotnet add package GraphQL.Server.Transports.WebSockets --version 2.0.0
-    - dotnet add package Microsoft.AspNetCore.StaticFiles --version 2.1.1
-  - Capa: Presentation/api_graph_ql/Issues
-    - dotnet new classlib
-  - dotnet sln DDD.NET.CORE.sln add .\1-Presentation\api_graph_ql\Issues\Issues.csproj (Raíz del proyecto)
-  - Capa: Presentation/api_graph_ql/Issues
-    - dotnet add package GraphQL --version 2.1.0
-    - dotnet add package System.Reactive --version 3.1.1
-  - cd server
-    - dotnet add reference ../Issues/Issues.csproj
-  - (1-Presentation\api_graph_ql\Issues) 
-    - dotnet add Issues.csproj reference  ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
-    - dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-  - (1-Presentation\api_graph_ql\server)
-    - dotnet add package Microsoft.EntityFrameworkCore
-    - dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-    - dotnet add package Microsoft.Extensions.Configuration
-    - dotnet add package Microsoft.Extensions.Configuration.Json
-    - dotnet add server.csproj reference  ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
+- dotnet add package GraphQL.Server.Transports.AspNetCore --version 2.0.0
+
+- dotnet add package GraphQL.Server.Transports.WebSockets --version 2.0.0
+
+- dotnet add package Microsoft.AspNetCore.StaticFiles --version 2.1.1
+- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+- dotnet add package Microsoft.EntityFrameworkCore
+- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+- dotnet add package Microsoft.Extensions.Configuration
+- dotnet add package Microsoft.Extensions.Configuration.Json
+- cd ..  (Regresar a la carpeta padre)
+
+**Cliente GraphQL**
+- cd Issues
+- dotnet add package GraphQL --version 2.1.0
+- dotnet add package System.Reactive --version 3.1.1
+- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+- dotnet add package Microsoft.EntityFrameworkCore
+- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+## Agregando referencias 
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
+
+**Servidor GraphQL**
+- cd 1-Presentation\api_graph_ql\server\
+- dotnet add server.csproj reference ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
+- cd ..  (Regresar a la carpeta padre)
+
+**Cliente GraphQL**
+- cd Issues
+- dotnet add reference ../Issues/Issues.csproj
+- dotnet add Issues.csproj reference ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
