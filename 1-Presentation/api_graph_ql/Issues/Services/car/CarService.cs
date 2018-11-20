@@ -33,7 +33,8 @@ namespace Issues.Services
 
         public Task<Car> GetCarByIdAsync(int id)
         {
-           return Task.FromResult(_cars.Single(u => Equals(u.Id, id)));
+           Car _car =  _applicationCarservice.GetCar(id);
+           return Task.FromResult(_car);
         }
 
         public Task<IEnumerable<Car>> GetCarsAsync()

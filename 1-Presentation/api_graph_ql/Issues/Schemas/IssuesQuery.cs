@@ -20,9 +20,6 @@ namespace Issues.Schemas
             Field<ListGraphType<UserType>>(
                 "users",
                 resolve: context => users.GetUsersAsync());
-            Field<ListGraphType<CarType>>(
-                "carros",
-                resolve: context => car.GetCarsAsync());
             Field<UserType>(
                 "user",
                 arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
@@ -30,6 +27,17 @@ namespace Issues.Schemas
                 {
                     var id = context.GetArgument<int>("id");
                     return users.GetUserByIdAsync(id);
+                });
+            Field<ListGraphType<CarType>>(
+                "carros",
+                resolve: context => car.GetCarsAsync());
+            Field<CarType>(
+                "carro",
+                arguments: new QueryArguments(new QueryArgument<IntGraphType> { Name = "id" }),
+                resolve: context =>
+                {
+                    var id = context.GetArgument<int>("id");
+                    return  car.GetCarByIdAsync(id);
                 });
         }
     }
