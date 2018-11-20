@@ -187,3 +187,42 @@
 - cd Issues
 - dotnet add reference ../Issues/Issues.csproj
 - dotnet add Issues.csproj reference ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
+
+## Probar GraphQL
+```
+mutation createCar($car: CarInput!) {
+  createCar(car: $car) {
+    ...myCar
+  }
+}
+
+query getCars {
+  carros {
+    ...myCar
+  }
+}
+
+query getCar {
+  carro(id: 2005) {
+   ...myCar
+  }
+}
+
+fragment myCar on CarType {
+  id
+  name
+  engine
+  model
+}
+```
+**Query Variables**
+```
+{
+  "car": 
+  {      
+    "name":"graphName",
+    "engine":"graphEngine",
+    "model": "2018"   
+  }
+}
+```

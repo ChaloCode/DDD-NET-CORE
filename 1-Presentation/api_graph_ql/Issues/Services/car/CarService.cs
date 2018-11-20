@@ -43,5 +43,12 @@ namespace Issues.Services
             _cars = _applicationCarservice.GetCars();
             return Task.FromResult(_cars.AsEnumerable());
         }
+
+        public Task<Car> CreateAsync(Car car)
+        {
+            _cars.Add(car);
+            _applicationCarservice.Create(car);
+            return Task.FromResult(car);
+        }
     }
 }

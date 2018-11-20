@@ -17,7 +17,6 @@ namespace Issues.Schemas
                 .Description("Motor del carro");           
             Field(f => f.Model)
                 .Description("Modelo del carro");
-
         }
     }
 }

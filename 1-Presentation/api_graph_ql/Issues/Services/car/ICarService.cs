@@ -10,5 +10,6 @@ namespace Issues.Services
         Car GetCarById(int id);
         Task<Car> GetCarByIdAsync(int id);
         Task<IEnumerable<Car>> GetCarsAsync();
+        Task<Car> CreateAsync(Car car);
     }
 }

@@ -3,6 +3,12 @@ namespace Domain.Entities.car
     public class Car
     {
         public Car(){}
+        public Car(string name, string engine, string model)
+        {
+            this.Name = name;
+            this.Engine = engine;
+            this.Model = model;
+        }
         public Car(int id, string name, string engine, string model)
         {
             this.Id = id;
