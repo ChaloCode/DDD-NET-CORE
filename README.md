@@ -189,6 +189,13 @@
 - dotnet add Issues.csproj reference ../../../3.1-Domain.Entities/3.1-Domain.Entities.csproj ../../../2-Application/2-Application.csproj ../../../4-Infrastructure/4-Infrastructure.csproj
 
 ## Probar GraphQL
+
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
+- dotnet build
+- dotnet run -p .\1-Presentation\api_graph_ql\server\
+>Pegue el siguiente código en el [cliente del servidor GraphQL](https://localhost:5001)
+
+>Documentación de apoyo [Queries y Mutations](https://graphql.github.io/learn/queries/) 
 ```
 mutation createCar($car: CarInput!) {
   createCar(car: $car) {
