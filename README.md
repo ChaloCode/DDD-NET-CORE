@@ -239,7 +239,7 @@ fragment myCar on CarType {
 }
 ```
 **Ejemplo para actualizar datos**
-
+[Rama del proyecto GraphQL_CreatedReadUpdate](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/GraphQL_CreatedReadUpdate)
 ```
 mutation updateCar($update: CarInputUpdate!){
   updateCar(update: $update){
@@ -272,7 +272,7 @@ fragment myCar on CarType {
 }
 ```
 **Ejemplo para borrado de datos**
-[Rama del proyecto GraphQL_CreatedReadUpdate](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/GraphQL_CreatedReadUpdate)
+[Rama del proyecto GraphQL_CRUD](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/GraphQL_CRUD)
 
 ```
 mutation deleteCar($carId: Int!){
