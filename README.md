@@ -252,6 +252,13 @@ query getCars {
     ...myCar
   }
 }
+
+fragment myCar on CarType {
+  id
+  name
+  engine
+  model
+}
 ```
 **Query Variables**
 ```
