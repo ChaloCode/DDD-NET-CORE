@@ -1,4 +1,4 @@
-> Ejemplo practico implementado con la arquitectura DDD (Domain Driven Design) usando NET CORE 2.1, Entity Framework Core, GraphQL y Visual Code (editor de texto).
+> Ejemplo práctico implementado con la arquitectura DDD (Domain Driven Design) usando NET CORE 2.1, Entity Framework Core, GraphQL y Visual Code (editor de texto).
 
 ## Requisitos
 - Este proyecto se probo sobre S.O Windows
@@ -70,7 +70,7 @@
 
 >Ejecute el siguiente comando en un shell o cmd (Raíz del proyecto):
   
-    dotnet sln DDD.NET.CORE.sln add 1-Presentation/api/api.csproj 2-Application/2-Application.csproj 3-Domain/3-Domain.csproj 4-3.1-Domain.Entities/3.1-Domain.Entities.csproj Infrastructure/4-Infrastructure.csproj 
+    dotnet sln DDD.NET.CORE.sln add 1-Presentation/api/api.csproj 2-Application/2-Application.csproj 3-Domain/3-Domain.csproj 4-3.1-Domain.Entities/3.1-Domain.Entities.csproj 4-Infrastructure/4-Infrastructure.csproj 
  
 # Paso II
 > Con este paso podrá conectarse a una base de datos usando Entity Framework Core, [rama del proyecto EntityFameworkCore](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/EntityFameworkCore)
@@ -88,7 +88,7 @@
 	- dotnet add package Microsoft.Extensions.Configuration.Json
 	- **cd .. cd ..** (Regresar a la carpeta raíz)
  - *Capa: Infraestructura* 
-	 - cd Infrastructure 
+	 - cd 4-Infrastructure 
 	- dotnet add package Microsoft.EntityFrameworkCore
 	- dotnet add package Microsoft.EntityFrameworkCore.Sqlite (opcional)
 	- dotnet add package Microsoft.EntityFrameworkCore.SqlServer
@@ -113,6 +113,7 @@
   
 # Paso III
 > Con este paso podrá implementar [GraphQL](https://graphql.org/) en la capa de presentación. 
+[Documentación de apoyo](https://graphql-dotnet.github.io/docs/getting-started/introduction)
 
 ## Api GraphQL
 >Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
@@ -196,6 +197,10 @@
 >Pegue el siguiente código en el [cliente del servidor GraphQL](https://localhost:5001)
 
 >Documentación de apoyo [Queries y Mutations](https://graphql.github.io/learn/queries/) 
+
+**Ejemplo para consultas y persistencia**
+[Rama del proyecto GraphQL_CreatedRead](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/GraphQL_CreatedRead)
+
 ```
 mutation createCar($car: CarInput!) {
   createCar(car: $car) {
@@ -230,6 +235,31 @@ fragment myCar on CarType {
     "name":"graphName",
     "engine":"graphEngine",
     "model": "2018"   
+  }
+}
+```
+**Ejemplo para actualizar datos**
+```
+mutation updateCar($update: CarInputUpdate!){
+  updateCar(update: $update){
+    ...myCar
+  }
+}
+
+query getCars {
+  carros {
+    ...myCar
+  }
+}
+```
+**Query Variables**
+```
+{
+  "update": {
+    "id": 3,
+    "name": "graphNameUpdate",
+    "engine": "graphEngineUpdate",
+    "model": "2019"
   }
 }
 ```

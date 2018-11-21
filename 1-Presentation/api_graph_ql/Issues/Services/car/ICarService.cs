@@ -11,5 +11,6 @@ namespace Issues.Services
         Task<Car> GetCarByIdAsync(int id);
         Task<IEnumerable<Car>> GetCarsAsync();
         Task<Car> CreateAsync(Car car);
+        Task<Car> UpdateAsync(Car car);
     }
 }

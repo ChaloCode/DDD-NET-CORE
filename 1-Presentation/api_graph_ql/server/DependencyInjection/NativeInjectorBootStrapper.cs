@@ -39,6 +39,7 @@ namespace server
             services.AddSingleton<IssuesQuery>();
             services.AddSingleton<IssuesSchema>();
             services.AddSingleton<CarCreateInputType>();
+            services.AddSingleton<CarUpdateInputType>();            
             services.AddSingleton<CarMutation>(); 
             services.AddSingleton<IDependencyResolver>(c => new FuncDependencyResolver(type => c.GetRequiredService(type)));
             services.AddGraphQLHttp();

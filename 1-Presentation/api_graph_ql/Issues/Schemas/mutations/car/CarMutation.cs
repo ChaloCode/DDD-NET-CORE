@@ -11,6 +11,7 @@ namespace Issues.Schemas
         public CarMutation(ICarService cars)
         {
             Name = "Mutation";
+            //Create
             Field<CarType>(
                 "createCar",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<CarCreateInputType>> { Name = "car" }),
@@ -23,6 +24,22 @@ namespace Issues.Schemas
                         carInput.Model
                     );
                     return cars.CreateAsync(car);
+                }
+            );
+            //Update
+            Field<CarType>(
+                "updateCar",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<CarUpdateInputType>> { Name = "update"}),
+                resolve: context =>
+                {
+                    var carInput = context.GetArgument<Car>("update");
+                    var car = new Car(
+                        carInput.Id,
+                        carInput.Name,
+                        carInput.Engine,
+                        carInput.Model
+                    );
+                    return cars.UpdateAsync(car);
                 }
             );
         }

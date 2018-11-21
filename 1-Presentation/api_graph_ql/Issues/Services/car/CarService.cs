@@ -50,5 +50,10 @@ namespace Issues.Services
             _applicationCarservice.Create(car);
             return Task.FromResult(car);
         }
+        public Task<Car> UpdateAsync(Car car)
+        {
+            _applicationCarservice.Update(car);
+            return Task.FromResult(car);
+        }
     }
 }
