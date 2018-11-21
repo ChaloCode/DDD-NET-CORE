@@ -42,6 +42,17 @@ namespace Issues.Schemas
                     return cars.UpdateAsync(car);
                 }
             );
+            //Delete
+            FieldAsync<CarType>(
+                "deleteCar",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "carId"}),
+                resolve: async  context =>
+                {
+                    int carId = context.GetArgument<int>("carId");
+                    return await context.TryAsyncResolve(
+                        async c => await cars.DeleteAsync(carId));
+                }
+            );
         }
     }
 }

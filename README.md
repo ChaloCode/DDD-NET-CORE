@@ -239,7 +239,7 @@ fragment myCar on CarType {
 }
 ```
 **Ejemplo para actualizar datos**
-[Rama del proyecto GraphQL_CreatedReadUpdate](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/GraphQL_CreatedReadUpdate)
+
 ```
 mutation updateCar($update: CarInputUpdate!){
   updateCar(update: $update){
@@ -269,5 +269,35 @@ fragment myCar on CarType {
     "engine": "graphEngineUpdate",
     "model": "2019"
   }
+}
+```
+**Ejemplo para borrado de datos**
+[Rama del proyecto GraphQL_CreatedReadUpdate](https://github.com/gonzaloperezbarrios/DDD-NET-CORE/tree/GraphQL_CreatedReadUpdate)
+
+```
+mutation deleteCar($carId: Int!){
+  deleteCar(carId: $carId){
+    id   
+    name
+  }
+}
+
+query getCars {
+  carros {
+    ...myCar
+  }
+}
+
+fragment myCar on CarType {
+  id
+  name
+  engine
+  model
+}
+```
+**Query Variables**
+```
+{
+  "carId": 1
 }
 ```

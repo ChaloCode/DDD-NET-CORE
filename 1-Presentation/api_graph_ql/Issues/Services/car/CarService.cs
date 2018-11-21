@@ -55,5 +55,13 @@ namespace Issues.Services
             _applicationCarservice.Update(car);
             return Task.FromResult(car);
         }
+
+        public Task<Car> DeleteAsync(int carId)
+        {
+            Car carro=new Car();
+            carro=_applicationCarservice.GetCar(carId);
+            _applicationCarservice.Delete(carId);
+            return Task.FromResult(carro);
+        }
     }
 }
