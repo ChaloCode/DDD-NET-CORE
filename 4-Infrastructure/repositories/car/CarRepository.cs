@@ -43,8 +43,11 @@ namespace Infrastructure.repositories.car
         }
         public void Update(Car carEntitie)
         {
-            _carContext.Cars.Attach(carEntitie);
-            _carContext.Entry(carEntitie).State = EntityState.Modified;
+            var car = _carContext.Cars.Find(carEntitie.Id);
+            car.Name = carEntitie.Name;
+            car.Model = carEntitie.Model;
+            car.Engine = carEntitie.Engine;
+            _carContext.Cars.Update(car);
             _carContext.SaveChanges();
         }
     }

@@ -53,12 +53,6 @@ namespace server
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseMvc();  
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseWebSockets();

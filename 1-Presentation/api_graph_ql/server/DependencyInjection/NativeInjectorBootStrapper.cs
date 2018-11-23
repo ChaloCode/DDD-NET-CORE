@@ -16,7 +16,6 @@ namespace server
     {
         public void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
         {
-            services.AddSingleton(configuration);
                ////////////////////////////////////////// 
               /////////////////DDD////////////////////// 
              //////////////////////////////////////////
@@ -41,6 +40,12 @@ namespace server
             services.AddSingleton<CarCreateInputType>();
             services.AddSingleton<CarUpdateInputType>();            
             services.AddSingleton<CarMutation>(); 
+            //WebSocket
+            services.AddSingleton<CarStatusesEnum>();
+            services.AddSingleton<CarSubscription>();
+            services.AddSingleton<CarEventType>();
+            services.AddSingleton<ICarEventService, CarEventService>();
+            //
             services.AddSingleton<IDependencyResolver>(c => new FuncDependencyResolver(type => c.GetRequiredService(type)));
             services.AddGraphQLHttp();
             services.AddGraphQLWebSocket<IssuesSchema>();
