@@ -5,10 +5,11 @@ namespace Issues.Schemas
 {
     public class IssuesSchema : Schema
     {
-        public IssuesSchema(IssuesQuery query, CarMutation mutation, IDependencyResolver resolver)
+        public IssuesSchema(IssuesQuery query, CarMutation mutation, CarSubscription subscription, IDependencyResolver resolver)
         {
             Query = query;
             Mutation = mutation;
+            Subscription = subscription;
             DependencyResolver = resolver;
         }
     }

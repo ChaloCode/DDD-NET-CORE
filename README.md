@@ -301,3 +301,67 @@ fragment myCar on CarType {
   "carId": 1
 }
 ```
+
+# Paso IV
+> Con este paso podrá implementar [WebSocket](https://en.wikipedia.org/wiki/WebSocket) usando [GraphQL Subscriptions](https://graphql-dotnet.github.io/docs/getting-started/subscriptions).
+[Documentación de apoyo](https://graphql-dotnet.github.io/docs/getting-started/introduction)
+
+## Probar GraphQL - WebSocket
+
+>Ejecute los siguientes comandos en un shell o cmd (raíz del proyecto)
+- dotnet build
+- dotnet run -p .\1-Presentation\api_graph_ql\server\
+>Pegue el siguiente código en el [cliente del servidor GraphQL](https://localhost:5001)
+
+```
+mutation updateCar($update: CarInputUpdate!){
+  updateCar(update: $update){
+    ...myCar
+  }
+}
+
+mutation deleteCar($carId: Int!){
+  deleteCar(carId: $carId){
+    id   
+    name
+  }
+}
+
+query getCars {
+  carros {
+    ...myCar
+  }
+}
+
+fragment myCar on CarType {
+  id
+  name
+  engine
+  model
+}
+```
+**Query Variables**
+```
+{
+  "update": {
+    "id": 2006,
+    "name": "Renault",
+    "engine": "1400",
+    "model": "2007"
+  },
+```
+**En una nueva ventana en ignonito**
+Correr el siguiente evento:
+```
+subscription{
+  carEvent(statuses:[ACTUALIZADO]){
+    id
+    name
+  }
+}
+```
+Resultado: 
+![Paso_1](doc/websoket/1_websocket.GIF)
+![Paso_2](doc/websoket/2_websocket.GIF)
+![Paso_3](doc/websoket/3_websocket.GIF)
+![Paso_4](doc/websoket/4_websocket.GIF)
