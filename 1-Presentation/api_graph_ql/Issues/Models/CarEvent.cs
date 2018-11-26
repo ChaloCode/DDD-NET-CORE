@@ -2,6 +2,9 @@ using System;
 
 namespace Issues.Models
 {
+    /// <summary>
+    /// Representa evento para ser notificado mediante WebSocket (scription en terminos de GraphQL)
+    /// </summary>
     public class CarEvent
     {
         public CarEvent(int id, string name, string engine, string model, CarStatuses status)

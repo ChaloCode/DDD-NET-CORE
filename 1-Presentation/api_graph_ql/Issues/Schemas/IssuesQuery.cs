@@ -3,11 +3,22 @@ using Issues.Services;
 
 namespace Issues.Schemas
 {
+    /// <summary>
+    /// Expone los metodos de GraphQL a Internet
+    /// Un equivalente en una API REST seria los Routes
+    /// </summary>
     public class IssuesQuery : ObjectGraphType<object>
     {
         private IIssueService issues;
         private IUserService users;
         private ICarService car;
+        /// <summary>
+        /// Resulve todas las clases que se quiere exponer.
+        /// Mediante la inyección de dependencias.
+        /// </summary>
+        /// <param name="issues">Resulve issues</param>
+        /// <param name="users">Resulve users</param>
+        /// <param name="car">Resulve car</param>
         public IssuesQuery(IIssueService issues, IUserService users, ICarService car)
         {
             this.issues = issues;

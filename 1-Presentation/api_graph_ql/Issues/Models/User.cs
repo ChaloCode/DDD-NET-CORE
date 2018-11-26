@@ -1,5 +1,8 @@
 namespace Issues.Models
 {
+    /// <summary>
+    /// Representa un objeto User
+    /// </summary>
     public class User
     {
         public User(int id, string username)

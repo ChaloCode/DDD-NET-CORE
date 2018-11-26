@@ -2,6 +2,9 @@ using System;
 
 namespace Issues.Models
 {
+    /// <summary>
+    /// Representa un objeto Issue
+    /// </summary>
     public class Issue
     {
         public Issue(string name, string description, DateTime created, int userId, string Id)

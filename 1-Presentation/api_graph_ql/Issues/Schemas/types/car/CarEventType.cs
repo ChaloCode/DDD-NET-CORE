@@ -3,6 +3,10 @@ using Issues.Models;
 
 namespace Issues.Schemas
 {
+    /// <summary>
+    /// Representa un evento carro que va ser notificado por WebSocket (scription en terminos de GraphQL)
+    /// Es la forma en que GraphQL mapea y documenta los objetos   
+    /// </summary>
     public class CarEventType : ObjectGraphType<CarEvent>
     {
         public CarEventType()

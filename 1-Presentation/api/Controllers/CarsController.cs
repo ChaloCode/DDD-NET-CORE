@@ -15,6 +15,10 @@ namespace api.Controllers
     {
 
         ICarService carService;
+        /// <summary>
+        /// Conecta la capa de aplicación usando inyección de dependencia.
+        /// </summary>
+        /// <param name="carService">Obtiene acceso a la capa de aplicación</param>
         public CarsController(ICarService carService)
         {
             this.carService = carService;           

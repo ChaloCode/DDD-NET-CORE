@@ -14,9 +14,16 @@ using Microsoft.Extensions.Options;
 
 namespace api
 {
+    /// <summary>
+    /// Clase de arranque del proyecto
+    /// </summary>
     public class Startup
     {    
         public IConfigurationRoot Configuration { get; }
+
+        /// <summary>
+        /// Obiete la cadena de conexión del archivo appsettings.json del proyecto de arranque de la capa de presentación
+        /// </summary>
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()

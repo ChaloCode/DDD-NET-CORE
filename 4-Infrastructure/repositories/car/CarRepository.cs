@@ -7,6 +7,11 @@ namespace Infrastructure.repositories.car
     using Domain.repositories.contracts.car;
     using Microsoft.EntityFrameworkCore;
 
+    /// <summary>
+    /// Implementa la interfaz del dominio 
+    /// La idea es, este conectado con una base de datos
+    /// Tiene los metodos de persistencia
+    /// </summary>
     public class CarRepository : ICarRepository
     {
         private CarContext _carContext;

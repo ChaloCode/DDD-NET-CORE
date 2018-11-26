@@ -12,6 +12,11 @@ namespace server
     using GraphQL.Server.Transports.AspNetCore;
     using GraphQL.Server.Transports.WebSockets;
 
+    /// <summary>
+    /// Esta encargado de mapear y realizar la inyección dependencias. 
+    /// Nota: Solo se indica la interfaz con la clase que se implementan directamente, no las interfaces que se pasa por el constructor. 
+    /// Lo aterior es la menera que se construye las intancias a las clases de forma automatica.
+    /// </summary>
     public class NativeInjectorBootStrapper
     {
         public void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
@@ -45,7 +50,7 @@ namespace server
             services.AddSingleton<CarSubscription>();
             services.AddSingleton<CarEventType>();
             services.AddSingleton<ICarEventService, CarEventService>();
-            //
+            //END
             services.AddSingleton<IDependencyResolver>(c => new FuncDependencyResolver(type => c.GetRequiredService(type)));
             services.AddGraphQLHttp();
             services.AddGraphQLWebSocket<IssuesSchema>();

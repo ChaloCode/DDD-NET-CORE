@@ -5,6 +5,9 @@ using Domain.Entities.car;
 
 namespace Issues.Services
 {
+    /// <summary>
+    /// Contiene los metodos de la logica de carro
+    /// </summary>
     public interface ICarService
     {
         Car GetCarById(int id);

@@ -19,6 +19,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace server
 {
+    /// <summary>
+    /// Clase de arranque del proyecto
+    /// </summary>
     public class Startup
     {
         public IConfigurationRoot Configuration { get; }
@@ -44,10 +47,13 @@ namespace server
             {
                 app.UseDeveloperExceptionPage();
             }
+            //Se requiere para que carge cliente de GraphQL donde se prueba la API
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            //Se requiere para que GraphQL resuelva WebSocket
             app.UseWebSockets();
             app.UseGraphQLWebSocket<IssuesSchema>(new GraphQLWebSocketsOptions());
+            //Se requiere para que GraphQL resuelva peticiones HTTP
             app.UseGraphQLHttp<IssuesSchema>(new GraphQLHttpOptions());
         }
     }

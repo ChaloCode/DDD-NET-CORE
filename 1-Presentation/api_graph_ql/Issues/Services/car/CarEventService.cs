@@ -5,6 +5,9 @@ using System.Reactive.Subjects;
 using Issues.Models;
 namespace Issues.Services
 {
+    /// <summary>
+    /// Representa la lógica para se notificada por WebSocket (scription en terminos de GraphQL).
+    /// </summary>
     public class CarEventService : ICarEventService
     {
         private readonly ISubject<CarEvent> _eventStream = new ReplaySubject<CarEvent>(1);

@@ -9,10 +9,19 @@ using Issues.Models;
 
 namespace Issues.Services
 {
+    /// <summary>
+    /// Representa la lógica de carro
+    /// </summary>
     public class CarService : ICarService
     {
         ApplicationLayer.ICarService _applicationCarservice;
         private readonly ICarEventService _events;
+        /// <summary>
+        /// Conecta la capa de Aplicación.
+        /// Conecta la notificación de ventos por WebSocket (scription en terminos de GraphQL).
+        /// </summary>
+        /// <param name="applicationCarservice">Obtiene el acceso a la capa de aplicación</param>
+        /// <param name="events">Notifica por WebSocket</param>
         public CarService(ApplicationLayer.ICarService applicationCarservice, ICarEventService events)
         {
             this._applicationCarservice = applicationCarservice;
@@ -52,7 +61,7 @@ namespace Issues.Services
         }
         public Task<Car> UpdateAsync(Car car)
         {
-           // _applicationCarservice.Update(car);
+            _applicationCarservice.Update(car);
             var carEvent= new CarEvent(
                 car.Id,
                 car.Name,

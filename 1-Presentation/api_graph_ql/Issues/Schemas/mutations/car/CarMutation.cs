@@ -6,6 +6,9 @@ using Issues.Services;
 
 namespace Issues.Schemas
 {
+    /// <summary>
+    /// Representa Mutaciones/Persistencia del objeto carro
+    /// </summary>
     public class CarMutation : ObjectGraphType<object>
     {
         public CarMutation(ICarService cars)

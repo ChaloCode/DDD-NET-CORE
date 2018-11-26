@@ -9,6 +9,9 @@ using Issues.Services;
 
 namespace Issues.Schemas
 {
+    /// <summary>
+    /// Realiza y dispara la comunicación vía WebSocket (scription en terminos de GraphQL)
+    /// </summary>
     public class CarSubscription: ObjectGraphType<object>
     {
         private readonly ICarEventService _events;

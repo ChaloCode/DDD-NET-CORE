@@ -7,6 +7,11 @@ namespace api
     using Infrastructure;
     using Microsoft.EntityFrameworkCore;
 
+    /// <summary>
+    /// Esta encargado de mapear y realizar la inyección dependencias. 
+    /// Nota: Solo se indica la interfaz con la clase que se implementan directamente, no las interfaces que se pasa por el constructor. 
+    /// Lo aterior es la menera que se construye las intancias a las clases de forma automatica.
+    /// </summary>
     public class NativeInjectorBootStrapper
     {
         public void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)

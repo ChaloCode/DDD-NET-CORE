@@ -6,6 +6,9 @@ using Issues.Models;
 
 namespace Issues.Services
 {
+    /// <summary>
+    /// Contiene los metodos de la logica de notificación por WebSocket (scription en terminos de GraphQL)
+    /// </summary>
     public interface ICarEventService
     {
         ConcurrentStack<CarEvent> AllEvents { get; }

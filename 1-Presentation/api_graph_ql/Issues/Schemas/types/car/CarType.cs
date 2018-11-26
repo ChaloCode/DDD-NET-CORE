@@ -5,6 +5,10 @@ using Issues.Services;
 
 namespace Issues.Schemas
 {
+    /// <summary>
+    /// Representa los atributos del objeto carro 
+    /// Es la forma en que GraphQL mapea y documenta los objetos   
+    /// </summary>
     public class CarType: ObjectGraphType<Car>
     {
         public CarType(ICarService cars)
