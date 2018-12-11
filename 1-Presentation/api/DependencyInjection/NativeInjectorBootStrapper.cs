@@ -2,13 +2,13 @@ namespace api
 {
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using DoaminService=Application.application.services.car;
-    using ApplicationService=Domain.domain.services.car;
+    using DoaminService = Application.application.services.car;
+    using ApplicationService = Domain.domain.services.car;
     using Infrastructure;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Esta encargado de mapear y realizar la inyección dependencias. 
+    /// Esta encargado de mapear y realizar la inyecciï¿½n dependencias. 
     /// Nota: Solo se indica la interfaz con la clase que se implementan directamente, no las interfaces que se pasa por el constructor. 
     /// Lo aterior es la menera que se construye las intancias a las clases de forma automatica.
     /// </summary>
@@ -16,6 +16,14 @@ namespace api
     {
         public void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
         {
+            //Proporciona los Cors para aceptar las peticiones de un origen diferente a la URL que expone el API
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+            });
+
+            //Entrada unica para la configuraciÃ³n
             services.AddSingleton(configuration);
 
             // Application

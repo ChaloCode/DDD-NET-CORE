@@ -18,7 +18,7 @@ namespace api
     /// Clase de arranque del proyecto
     /// </summary>
     public class Startup
-    {    
+    {
         public IConfigurationRoot Configuration { get; }
 
         /// <summary>
@@ -58,8 +58,9 @@ namespace api
             {
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
+            // Shows UseCors with named policy.
+            app.UseCors("AllowSpecificOrigin");
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
