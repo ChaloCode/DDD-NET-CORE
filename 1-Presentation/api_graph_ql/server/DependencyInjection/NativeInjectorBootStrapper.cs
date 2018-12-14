@@ -13,7 +13,7 @@ namespace server
     using GraphQL.Server.Transports.WebSockets;
 
     /// <summary>
-    /// Esta encargado de mapear y realizar la inyección dependencias. 
+    /// Esta encargado de mapear y realizar la inyecciï¿½n dependencias. 
     /// Nota: Solo se indica la interfaz con la clase que se implementan directamente, no las interfaces que se pasa por el constructor. 
     /// Lo aterior es la menera que se construye las intancias a las clases de forma automatica.
     /// </summary>
@@ -21,6 +21,12 @@ namespace server
     {
         public void RegisterServices(IServiceCollection services, IConfigurationRoot configuration)
         {
+            //Proporciona los Cors para aceptar las peticiones de un origen diferente a la URL que expone el API
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+            });
                ////////////////////////////////////////// 
               /////////////////DDD////////////////////// 
              //////////////////////////////////////////

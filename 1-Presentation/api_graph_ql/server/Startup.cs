@@ -47,6 +47,8 @@ namespace server
             {
                 app.UseDeveloperExceptionPage();
             }
+            // Shows UseCors with named policy.
+            app.UseCors("AllowSpecificOrigin");
             //Se requiere para que carge cliente de GraphQL donde se prueba la API
             app.UseDefaultFiles();
             app.UseStaticFiles();
